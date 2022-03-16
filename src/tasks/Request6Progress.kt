@@ -14,15 +14,13 @@ suspend fun loadContributorsProgress(
 
     var allUsers = mutableListOf<User>()
 
-    repos.forEach { repo ->
+    repos.forEachIndexed { index, repo ->
         allUsers.addAll(service
             .getRepoContributors(req.org, repo.name)
             .also { logUsers(repo, it) }
             .bodyList())
 
         allUsers = allUsers.aggregate().toMutableList()
-        updateResults(allUsers, false)
+        updateResults(allUsers, index == repos.lastIndex)
     }
-
-    updateResults(allUsers, true)
 }
