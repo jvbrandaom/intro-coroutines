@@ -35,7 +35,7 @@ val repos = testRepos.mapIndexed { index, testRepo -> Repo(index.toLong(), testR
 val reposMap = testRepos.associate { it.name to it }
 
 val expectedResults = TestResults(
-    4000, // 1000 + (1000 + 1200 + 800)
+    5000, // 1000 + (1000 + 1200 + 800)
     listOf(
         User("user-2", 100),
         User("user-3", 60),
